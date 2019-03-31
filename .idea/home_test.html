@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<div id="accordion">
+    {% for i in range(0,4) %}
+        <div class="card">
+        <div class="card-header" id="heading{{i}}">
+      <h5 class="mb-0">
+        <button class="btn btn-link btn-block"
+                data-toggle="collapse" data-target="#collapse{{i}}"
+                aria-expanded="true" aria-controls="collapse{{i}}">
+          SUBSCRIBER TABLE {{i}}
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapse{{i}}"
+         class="collapse" aria-labelledby="heading{{i}}"
+         data-parent="#accordion">
+
+        <div class="card-body">
+
+        <table class="table table-bordered" >
+
+            <tr>
+                {% for item2 in columnsList[i]%}
+                <!--{%if loop.index <10 %}-->
+                    <th scope="col">{{item2}}</th>
+                <!--{% endif %}-->
+                {% endfor %}
+            </tr>
+
+            {% for item3 in postsList[i] %}
+                <tbody>
+                <tr>
+                <th scope="row">{{loop.index}}</th>
+                {% for x in item3 %}
+                {%if loop.index <9 %}
+                <td>{{x}}</td>
+                {% endif %}
+                {% endfor %}
+            </tr>
+                </tbody>
+            {% endfor %}
+
+    </table>
+
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+
+
+</div>
+{% endblock content %}
